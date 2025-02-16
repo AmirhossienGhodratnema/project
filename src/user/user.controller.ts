@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { UserService } from "./user.service";
 
 
@@ -17,7 +17,7 @@ export class UserController {
     };
 
     @Get('/:id')
-    findOne(@Param('id') id: number) {
+    findOne(@Param('id',ParseIntPipe) id: number) {
         const user = this.userService.findOne(+id);
         console.log("🚀 ~ UserController ~ findOne ~ user:", user)
         return user
